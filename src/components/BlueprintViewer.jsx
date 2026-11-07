@@ -114,7 +114,7 @@ export default function BlueprintViewer() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-blueprint-950 relative border-b border-blueprint-800">
+    <section id="blueprint" className="py-20 lg:py-28 bg-blueprint-950 relative border-b border-blueprint-800">
       <div className="absolute inset-0 blueprint-grid-subtle opacity-30 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -438,3 +438,4 @@ export default function BlueprintViewer() {
     </section>
   );
 }
+

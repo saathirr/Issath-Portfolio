@@ -53,10 +53,11 @@ export default function Navbar({ onOpenCV }) {
     { name: '02. About', href: '#about' },
     { name: '03. Experience', href: '#experience' },
     { name: '04. Projects', href: '#projects' },
-    { name: '05. Skills', href: '#skills' },
-    { name: '06. Software', href: '#software' },
-    { name: '07. Estimator', href: '#calculator' },
-    { name: '08. Contact', href: '#contact' },
+    { name: '05. Blueprint Audit', href: '#blueprint' },
+    { name: '06. Skills', href: '#skills' },
+    { name: '07. Software', href: '#software' },
+    { name: '08. Estimator', href: '#calculator' },
+    { name: '09. Contact', href: '#contact' },
   ];
 
   return (
