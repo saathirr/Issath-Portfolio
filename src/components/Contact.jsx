@@ -1,327 +1,195 @@
 import React, { useState } from 'react';
-import { 
-  PhoneCall, 
-  Mail, 
-  MapPin, 
-  Linkedin, 
-  Send, 
-  FileDown, 
-  CheckCircle2, 
-  MessageSquare, 
-  Sparkles,
-  Building2,
-  Clock,
-  ShieldCheck,
-  ExternalLink
-} from 'lucide-react';
+import { Phone, Mail, MapPin, Linkedin, Send, FileDown, CheckCircle2 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export default function Contact({ onOpenCV }) {
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    service: 'Full-Time / Contract Role (KSA)',
+    subject: '',
     message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate inquiry submission
     setSubmitted(true);
   };
 
-  const whatsappUrl = `https://wa.me/966568159465?text=${encodeURIComponent(
-    "Hello Mohammed Issath, I came across your Quantity Surveying portfolio and would like to discuss a project / professional opportunity."
-  )}`;
-
   return (
-    <section id="contact" className="py-20 lg:py-28 blueprint-bg relative border-b border-blueprint-800">
-      <div className="absolute inset-0 blueprint-grid-subtle opacity-30 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-16 sm:py-24 bg-slate-950">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-safety-400 uppercase tracking-widest bg-blueprint-900/90 px-3 py-1 rounded border border-blueprint-800 mb-3">
-            <PhoneCall className="w-3.5 h-3.5 text-safety-400" />
-            <span>10. INITIATE ENGAGEMENT // JEDDAH &amp; GCC</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-white tracking-tight">
+        <div className="mb-14">
+          <span className="text-xs font-semibold text-amber-400 tracking-wider uppercase block mb-1">
+            10. Get In Touch
+          </span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
             Let's Discuss Your Next Construction Project
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mt-3">
-            I am interested in professional opportunities in <strong>Quantity Surveying, Cost Estimation, Civil &amp; MEP Construction and Commercial Management</strong> across Saudi Arabia and the GCC region.
+          <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+            I am interested in professional opportunities in Quantity Surveying, Cost Estimation, Civil &amp; MEP Construction and Commercial Management.
           </p>
         </div>
 
-        {/* Main Grid: Contact Cards & Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column: Direct Contact Info & Quick Actions */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Left Column: Direct Contact Details */}
+          <div className="lg:col-span-5 space-y-4">
             
-            {/* Primary Profile Card */}
-            <div className="glass-panel p-6 sm:p-7 rounded-2xl border border-safety-500/30 space-y-5">
-              <div className="flex items-center gap-3 pb-4 border-b border-blueprint-800">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-safety-500 to-amber-600 flex items-center justify-center font-black text-blueprint-950 font-heading text-xl shadow-lg">
-                  MI
-                </div>
-                <div>
-                  <h3 className="text-xl font-heading font-black text-white">
-                    {PERSONAL_INFO.name}
-                  </h3>
-                  <div className="text-xs font-mono text-safety-400">
-                    {PERSONAL_INFO.title}
-                  </div>
-                </div>
-              </div>
+            <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5">
+              <h3 className="text-lg font-bold text-white pb-3 border-b border-slate-800">
+                Contact Information
+              </h3>
 
-              {/* Direct Details List */}
-              <div className="space-y-4 font-mono text-xs">
-                
-                {/* Location */}
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-blueprint-950/70 border border-blueprint-800">
-                  <MapPin className="w-4 h-4 text-safety-400 shrink-0 mt-0.5" />
+              <div className="space-y-4 text-sm text-slate-300">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
                   <div>
-                    <span className="text-slate-400 text-[10px] uppercase block">Location</span>
-                    <span className="text-slate-200 font-bold">{PERSONAL_INFO.location}</span>
-                    <span className="text-[10px] text-emerald-400 block mt-0.5">Available for transfer / immediate start in KSA</span>
+                    <span className="text-xs text-slate-400 block">Location</span>
+                    <strong className="text-white font-medium">{PERSONAL_INFO.location}</strong>
                   </div>
                 </div>
 
-                {/* Phone & WhatsApp */}
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-blueprint-950/70 border border-blueprint-800">
-                  <PhoneCall className="w-4 h-4 text-safety-400 shrink-0 mt-0.5" />
-                  <div className="flex-1">
-                    <span className="text-slate-400 text-[10px] uppercase block">Phone / Mobile</span>
-                    <a 
-                      href={`tel:${PERSONAL_INFO.phone.replace(/\s+/g, '')}`} 
-                      className="text-slate-200 hover:text-safety-400 font-bold block"
-                    >
+                <div className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
+                  <div>
+                    <span className="text-xs text-slate-400 block">Phone</span>
+                    <a href={`tel:${PERSONAL_INFO.phone.replace(/\s+/g, '')}`} className="text-white hover:text-amber-400 transition-colors font-medium">
                       {PERSONAL_INFO.phone}
                     </a>
-                    <a 
-                      href={whatsappUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-[11px] text-emerald-400 hover:underline inline-flex items-center gap-1 mt-1 font-bold"
-                    >
-                      <MessageSquare className="w-3 h-3" />
-                      Chat directly on WhatsApp &rarr;
-                    </a>
                   </div>
                 </div>
 
-                {/* Email */}
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-blueprint-950/70 border border-blueprint-800">
-                  <Mail className="w-4 h-4 text-safety-400 shrink-0 mt-0.5" />
-                  <div className="flex-1">
-                    <span className="text-slate-400 text-[10px] uppercase block">Email Address</span>
-                    <a 
-                      href={`mailto:${PERSONAL_INFO.email}`} 
-                      className="text-slate-200 hover:text-safety-400 font-bold break-all"
-                    >
+                <div className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
+                  <div>
+                    <span className="text-xs text-slate-400 block">Email</span>
+                    <a href={`mailto:${PERSONAL_INFO.email}`} className="text-white hover:text-amber-400 transition-colors font-medium break-all">
                       {PERSONAL_INFO.email}
                     </a>
                   </div>
                 </div>
 
-                {/* LinkedIn */}
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-blueprint-950/70 border border-blueprint-800">
-                  <Linkedin className="w-4 h-4 text-safety-400 shrink-0 mt-0.5" />
-                  <div className="flex-1">
-                    <span className="text-slate-400 text-[10px] uppercase block">Professional Network</span>
+                <div className="flex items-start gap-3">
+                  <Linkedin className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
+                  <div>
+                    <span className="text-xs text-slate-400 block">LinkedIn</span>
                     <a 
-                      href={PERSONAL_INFO.linkedinUrl} 
+                      href={PERSONAL_INFO.linkedinUrl}
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-slate-200 hover:text-safety-400 font-bold flex items-center gap-1"
+                      className="text-white hover:text-amber-400 transition-colors font-medium"
                     >
-                      <span>{PERSONAL_INFO.linkedin}</span>
-                      <ExternalLink className="w-3 h-3 text-slate-500" />
+                      {PERSONAL_INFO.linkedin}
                     </a>
                   </div>
                 </div>
-
               </div>
 
-              {/* Action Buttons: Download CV & Send Email */}
-              <div className="pt-2 flex flex-col sm:flex-row gap-3">
+              {/* Call to Actions */}
+              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={onOpenCV}
-                  className="flex-1 py-3 px-4 rounded-xl font-mono text-xs font-bold bg-blueprint-900 hover:bg-blueprint-850 text-white border border-safety-500/40 hover:border-safety-500 transition-all flex items-center justify-center gap-2 group shadow-sm"
+                  className="flex-1 py-2.5 px-4 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center gap-2 transition-colors"
                 >
-                  <FileDown className="w-4 h-4 text-safety-400 group-hover:translate-y-0.5 transition-transform" />
-                  <span>Download My CV</span>
+                  <FileDown className="w-4 h-4 text-amber-400" />
+                  Download My CV
                 </button>
-
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="flex-1 py-3 px-4 rounded-xl font-mono text-xs font-bold bg-safety-500 hover:bg-safety-400 text-blueprint-950 transition-all flex items-center justify-center gap-2 shadow-lg shadow-safety-500/20"
+                  className="flex-1 py-2.5 px-4 rounded-lg text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center justify-center gap-2 transition-colors text-center"
                 >
                   <Mail className="w-4 h-4" />
-                  <span>Send Email</span>
+                  Send Email
                 </a>
-              </div>
-            </div>
-
-            {/* Strategic Location Banner */}
-            <div className="p-4 rounded-xl bg-blueprint-950/60 border border-blueprint-800 text-xs font-mono text-slate-400 flex items-center gap-3">
-              <Clock className="w-5 h-5 text-safety-400 shrink-0" />
-              <div>
-                <span className="text-white font-bold block">Current Location: Jeddah, Saudi Arabia 🇸🇦</span>
-                <span className="text-[11px] text-slate-400">Readily available for interviews, site audits, and full-time mobilization.</span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Interactive Engagement Form */}
-          <div className="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-2xl border border-blueprint-800 relative">
-            
-            <div className="flex items-center justify-between pb-4 border-b border-blueprint-800 mb-6">
-              <div>
-                <h3 className="text-xl font-heading font-black text-white">
-                  Send a Direct Message
-                </h3>
-                <p className="text-xs font-mono text-slate-400 mt-0.5">
-                  Inquire about full-time placement, freelance estimating, or BOQ preparation.
-                </p>
-              </div>
-              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                ACTIVE INBOX
-              </span>
-            </div>
-
+          {/* Right Column: Simple Message Form */}
+          <div className="lg:col-span-7 bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-800">
             {submitted ? (
-              <div className="py-12 text-center space-y-4 animate-fadeIn">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center text-emerald-400 mx-auto">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h4 className="text-2xl font-heading font-bold text-white">
-                  Message Prepared Successfully!
-                </h4>
-                <p className="text-sm text-slate-300 max-w-md mx-auto">
-                  Thank you for reaching out. You can also send this inquiry directly to{' '}
-                  <a href={`mailto:${PERSONAL_INFO.email}`} className="text-safety-400 underline font-mono">
+              <div className="py-12 text-center space-y-3">
+                <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
+                <h4 className="text-xl font-bold text-white">Thank You!</h4>
+                <p className="text-sm text-slate-300">
+                  Your message has been sent. You can also reach me directly at{' '}
+                  <a href={`mailto:${PERSONAL_INFO.email}`} className="text-amber-400 underline">
                     {PERSONAL_INFO.email}
-                  </a>{' '}
-                  or ping Mohammed on WhatsApp.
+                  </a>.
                 </p>
-                <div className="pt-4 flex justify-center gap-3">
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-lg font-mono text-xs font-bold bg-emerald-500 text-blueprint-950 flex items-center gap-2"
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                    Open WhatsApp Chat
-                  </a>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="px-5 py-2.5 rounded-lg font-mono text-xs bg-blueprint-900 text-slate-300 border border-blueprint-700"
-                  >
-                    Send Another
-                  </button>
-                </div>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="mt-4 px-4 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-200"
+                >
+                  Send another message
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                
+                <h3 className="text-lg font-bold text-white mb-4">Send a Message</h3>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                      Your Name / Organization *
-                    </label>
+                    <label className="block text-xs text-slate-400 mb-1">Your Name *</label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Red Sea Global / Contractor"
+                      placeholder="e.g. John Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-blueprint-950/80 border border-blueprint-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-safety-500 font-sans"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-amber-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                      Email Address *
-                    </label>
+                    <label className="block text-xs text-slate-400 mb-1">Your Email *</label>
                     <input
                       type="email"
                       required
-                      placeholder="name@company.com"
+                      placeholder="e.g. john@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-blueprint-950/80 border border-blueprint-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-safety-500 font-sans"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-amber-500"
                     />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                      Phone Number (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="+966 ..."
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-blueprint-950/80 border border-blueprint-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-safety-500 font-sans"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                      Subject / Service Area *
-                    </label>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-blueprint-950/80 border border-blueprint-700 text-white text-sm focus:outline-none focus:border-safety-500 font-sans"
-                    >
-                      <option value="Full-Time / Contract Role (KSA)">Full-Time / Contract Role (Saudi Arabia)</option>
-                      <option value="BOQ Preparation & Quantity Take-Off">BOQ Preparation &amp; Quantity Take-Off</option>
-                      <option value="Tender Cost Estimation & Analysis">Tender Cost Estimation &amp; Analysis</option>
-                      <option value="Interim Payment Applications (IPA)">Interim Payment Applications (IPA)</option>
-                      <option value="Subcontractor Claims & Variations">Subcontractor Claims &amp; Variations</option>
-                      <option value="Drawing Audit (IFT / IFC / Shop)">Drawing Audit (IFT / IFC / Shop)</option>
-                    </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                    Project Details / Inquiry *
-                  </label>
+                  <label className="block text-xs text-slate-400 mb-1">Subject</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Project Opportunity / Quantity Surveying"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-amber-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs text-slate-400 mb-1">Message *</label>
                   <textarea
                     rows={4}
                     required
-                    placeholder="Briefly describe your project location, scope, building trades (Civil/MEP), or position opportunity..."
+                    placeholder="Your message here..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-blueprint-950/80 border border-blueprint-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-safety-500 font-sans"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-amber-500"
                   ></textarea>
                 </div>
 
-                {/* Submit button */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 px-6 rounded-xl font-mono text-sm font-bold bg-safety-500 hover:bg-safety-400 text-blueprint-950 transition-all flex items-center justify-center gap-2 shadow-xl shadow-safety-500/25 hover:shadow-safety-500/40"
-                  >
-                    <Send className="w-4 h-4" />
-                    <span>Get In Touch</span>
-                  </button>
-                </div>
-
+                <button
+                  type="submit"
+                  className="w-full py-3 px-5 rounded-lg text-sm font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center justify-center gap-2 transition-colors font-medium"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Get In Touch</span>
+                </button>
               </form>
             )}
-
           </div>
 
         </div>
@@ -330,4 +198,3 @@ export default function Contact({ onOpenCV }) {
     </section>
   );
 }
-
