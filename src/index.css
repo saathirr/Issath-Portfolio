@@ -5,16 +5,16 @@
 @layer base {
   body {
     @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-950;
+    overflow-x: hidden;
   }
 
-  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Clean Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
     background: #020617;
@@ -26,6 +26,261 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #f59e0b;
   }
+}
+
+/* ============================================
+   CONSTRUCTION ANIMATION KEYFRAMES
+   ============================================ */
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(10px) rotate(-1deg); }
+}
+
+@keyframes craneSwing {
+  0%, 100% { transform: rotate(-4deg); }
+  50%       { transform: rotate(4deg); }
+}
+
+@keyframes craneLoad {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(12px); }
+}
+
+@keyframes shimmerSlide {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+
+@keyframes measureScan {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes rulerTick {
+  0%   { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes buildUp {
+  0%   { transform: scaleY(0); opacity: 0; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  0%   { transform: translateX(-40px); opacity: 0; }
+  100% { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes slideInRight {
+  0%   { transform: translateX(40px); opacity: 0; }
+  100% { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideInUp {
+  0%   { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  0%   { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes countUp {
+  0%   { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes borderDraw {
+  0%   { stroke-dashoffset: 400; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes workerWalk {
+  0%   { transform: translateX(-40px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 40px)); opacity: 0; }
+}
+
+@keyframes excavatorDig {
+  0%, 100% { transform: rotate(-5deg); }
+  50%       { transform: rotate(5deg); }
+}
+
+@keyframes brickLay {
+  0%   { transform: scaleX(0); transform-origin: left; opacity: 0; }
+  100% { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes blueprintGrid {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes typewrite {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+  50%       { box-shadow: 0 0 25px rgba(245, 158, 11, 0.6), 0 0 50px rgba(245, 158, 11, 0.2); }
+}
+
+@keyframes progressFill {
+  0%   { width: 0%; }
+  100% { width: var(--progress-width, 100%); }
+}
+
+/* ============================================
+   UTILITY ANIMATION CLASSES
+   ============================================ */
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+.animate-float-reverse {
+  animation: floatReverse 7s ease-in-out infinite;
+}
+.animate-crane-swing {
+  transform-origin: top center;
+  animation: craneSwing 6s ease-in-out infinite;
+}
+.animate-crane-load {
+  animation: craneLoad 3s ease-in-out infinite;
+}
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+.animate-measure-scan {
+  animation: measureScan 4s ease-in-out infinite;
+}
+.animate-slide-in-left {
+  animation: slideInLeft 0.7s ease-out both;
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.7s ease-out both;
+}
+.animate-slide-in-up {
+  animation: slideInUp 0.6s ease-out both;
+}
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out both;
+}
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out both;
+}
+.animate-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+.animate-rotate-slow {
+  animation: rotateSlow 20s linear infinite;
+}
+
+/* Scroll-reveal: items start hidden, JS adds 'revealed' class */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Shimmer heading text */
+.shimmer-text {
+  background: linear-gradient(90deg, #f59e0b 0%, #fef08a 40%, #f59e0b 60%, #fbbf24 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmerSlide 4s linear infinite;
+}
+
+/* CAD grid background */
+.bg-cad-pattern {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Construction hazard stripes */
+.hazard-line {
+  background: repeating-linear-gradient(
+    -45deg,
+    #f59e0b,
+    #f59e0b 10px,
+    #0f172a 10px,
+    #0f172a 20px
+  );
+}
+
+/* Construction beam effect */
+.steel-beam {
+  background: linear-gradient(180deg, #64748b 0%, #94a3b8 50%, #64748b 100%);
+}
+
+/* Animated progress fill for experience bars */
+.progress-animated {
+  animation: progressFill 1.4s ease-out both;
 }
 
 /* Print styles for CV */

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { Check, Sparkles, Sliders, Layers, ArrowUpRight, Globe, MessageSquare } from 'lucide-react';
-import { 
-  AutoCADLogo, 
-  PlanSwiftLogo, 
-  CostXLogo, 
-  RevitLogo, 
-  SketchUpLogo, 
-  ExcelLogo 
+import { Check, Globe } from 'lucide-react';
+import {
+  AutoCADLogo,
+  PlanSwiftLogo,
+  CostXLogo,
+  RevitLogo,
+  SketchUpLogo,
+  ExcelLogo,
 } from './SoftwareLogos';
 import { LANGUAGES_DATA } from '../data/portfolioData';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function SoftwareLanguages() {
+  useScrollReveal();
   const [activeTool, setActiveTool] = useState(0);
 
   const softwareList = [
@@ -22,11 +24,12 @@ export default function SoftwareLanguages() {
       levelText: 'Expert / Advanced',
       logo: AutoCADLogo,
       themeColor: '#E51937',
-      bgGlow: 'from-red-500/20 to-orange-500/10',
-      borderColor: 'border-red-500/30',
+      bgGlow: 'from-red-500/15 to-orange-500/5',
+      borderColor: 'border-red-500/25',
       activeBorder: 'border-red-500',
-      description: 'Reviewing IFT, IFC, and shop drawings, conducting on-screen area and linear measurements, verifying section layers, and resolving site dimensional discrepancies.',
-      features: ['Drawing Layer Audit', 'Area & Perimeter Take-offs', 'Shop Drawing Cross-Referencing', 'Coordinate Verification']
+      description:
+        'Reviewing IFT, IFC, and shop drawings, conducting on-screen area and linear measurements, verifying section layers, and resolving site dimensional discrepancies.',
+      features: ['Drawing Layer Audit', 'Area & Perimeter Take-offs', 'Shop Drawing Cross-Referencing', 'Coordinate Verification'],
     },
     {
       id: 'planswift',
@@ -36,11 +39,12 @@ export default function SoftwareLanguages() {
       levelText: 'Expert Mastery',
       logo: PlanSwiftLogo,
       themeColor: '#2E7D32',
-      bgGlow: 'from-emerald-500/20 to-green-500/10',
-      borderColor: 'border-emerald-500/30',
+      bgGlow: 'from-emerald-500/15 to-green-500/5',
+      borderColor: 'border-emerald-500/25',
       activeBorder: 'border-emerald-500',
-      description: 'High-speed digital quantity takeoff software. Performing comprehensive linear, area, count, and pitch measurements with direct formula link to Excel BOQ structures.',
-      features: ['Digital Measurement Scales', 'Material Part Schedules', 'Concrete & Formwork Takeoff', 'Excel BOQ Integration']
+      description:
+        'High-speed digital quantity takeoff software. Performing comprehensive linear, area, count, and pitch measurements with direct formula link to Excel BOQ structures.',
+      features: ['Digital Measurement Scales', 'Material Part Schedules', 'Concrete & Formwork Takeoff', 'Excel BOQ Integration'],
     },
     {
       id: 'costx',
@@ -50,25 +54,27 @@ export default function SoftwareLanguages() {
       levelText: 'Advanced Estimator',
       logo: CostXLogo,
       themeColor: '#6A1B9A',
-      bgGlow: 'from-purple-500/20 to-pink-500/10',
-      borderColor: 'border-purple-500/30',
+      bgGlow: 'from-purple-500/15 to-pink-500/5',
+      borderColor: 'border-purple-500/25',
       activeBorder: 'border-purple-500',
-      description: 'Integrated 2D and 3D BIM measurement. Extracting quantities directly from Revit/IFC models, comparing drawing revisions, and establishing live rate cost workbooks.',
-      features: ['3D BIM Quantification', 'Revision Auto-Comparison', 'Rate Workbooks', 'Subcontractor Trade Packages']
+      description:
+        'Integrated 2D and 3D BIM measurement. Extracting quantities directly from Revit/IFC models, comparing drawing revisions, and establishing live rate cost workbooks.',
+      features: ['3D BIM Quantification', 'Revision Auto-Comparison', 'Rate Workbooks', 'Subcontractor Trade Packages'],
     },
     {
       id: 'revit',
-      name: 'Revit Architecture',
+      name: 'Revit',
       category: 'BIM & Parametric Quantification',
       proficiency: 85,
       levelText: 'Certified Specialist',
       logo: RevitLogo,
       themeColor: '#007996',
-      bgGlow: 'from-cyan-500/20 to-blue-500/10',
-      borderColor: 'border-cyan-500/30',
+      bgGlow: 'from-cyan-500/15 to-blue-500/5',
+      borderColor: 'border-cyan-500/25',
       activeBorder: 'border-cyan-500',
-      description: 'Navigating 3D architectural and structural BIM models to extract parametric schedules, verify concrete element volumes, and audit spatial clashes.',
-      features: ['Parametric Element Audit', 'Material Schedules', 'Clash Identification', 'Volume Extraction']
+      description:
+        'Navigating 3D architectural and structural BIM models to extract parametric schedules, verify concrete element volumes, and audit spatial clashes.',
+      features: ['Parametric Element Audit', 'Material Schedules', 'Clash Identification', 'Volume Extraction'],
     },
     {
       id: 'sketchup',
@@ -78,44 +84,52 @@ export default function SoftwareLanguages() {
       levelText: 'Working Mastery',
       logo: SketchUpLogo,
       themeColor: '#D32F2F',
-      bgGlow: 'from-rose-500/20 to-red-500/10',
-      borderColor: 'border-rose-500/30',
+      bgGlow: 'from-rose-500/15 to-red-500/5',
+      borderColor: 'border-rose-500/25',
       activeBorder: 'border-rose-500',
-      description: '3D spatial visualization for site logistics, checking complex architectural geometries, and assessing temporary works and staging volumes.',
-      features: ['Spatial Geometry Checks', 'Site Logistics Layout', 'Volume Assessment', 'Visual Presentation']
+      description:
+        '3D spatial visualization for site logistics, checking complex architectural geometries, and assessing temporary works and staging volumes.',
+      features: ['Spatial Geometry Checks', 'Site Logistics Layout', 'Volume Assessment', 'Visual Presentation'],
     },
     {
       id: 'excel',
-      name: 'Microsoft Office & Excel',
+      name: 'MS Office & Excel',
       category: 'Spreadsheets & Cost Modeling',
       proficiency: 98,
       levelText: 'Advanced Modeling',
       logo: ExcelLogo,
       themeColor: '#107C41',
-      bgGlow: 'from-green-500/20 to-teal-500/10',
-      borderColor: 'border-green-500/30',
+      bgGlow: 'from-green-500/15 to-teal-500/5',
+      borderColor: 'border-green-500/25',
       activeBorder: 'border-green-500',
-      description: 'Advanced commercial modeling: formulating detailed BOQs, Cost Value Reconciliations (CVR), Interim Payment Applications (IPA), and executive reporting.',
-      features: ['Dynamic BOQ Formulation', 'Interim Payment Schedules', 'CVR Financial Reports', 'Variation Claims Matrix']
-    }
+      description:
+        'Advanced commercial modeling: formulating detailed BOQs, Cost Value Reconciliations (CVR), Interim Payment Applications (IPA), and executive reporting.',
+      features: ['Dynamic BOQ Formulation', 'Interim Payment Schedules', 'CVR Financial Reports', 'Variation Claims Matrix'],
+    },
   ];
 
   const currentTool = softwareList[activeTool];
   const CurrentLogo = currentTool.logo;
 
   return (
-    <section id="software" className="py-16 sm:py-24 bg-slate-900 border-b border-slate-800 relative overflow-hidden">
-      
-      {/* Subtle Ambient Background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <section id="software" className="py-16 sm:py-24 lg:py-28 bg-slate-900 border-b border-slate-800 relative overflow-hidden">
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
-        
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/4 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Tool grid dots pattern */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
+        backgroundImage: 'radial-gradient(circle, rgba(245,158,11,0.08) 1px, transparent 1px)',
+        backgroundSize: '28px 28px',
+      }} />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14">
+
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
           <div>
             <span className="text-xs font-semibold text-amber-400 tracking-wider uppercase block mb-1">
-              08. TECHNICAL TOOLS &amp; PROFICIENCY
+              08. Technical Tools &amp; Proficiency
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
               Software Proficiency
@@ -124,16 +138,16 @@ export default function SoftwareLanguages() {
               Industry-standard software for digital take-offs, 2D/3D BIM estimation, and commercial modeling.
             </p>
           </div>
-          <span className="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+          <span className="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
             Click any tool to explore capabilities
           </span>
         </div>
 
-        {/* ATTRACTIVE MODERN SHOWCASE (Not a boring plain grid!) */}
-        <div className="space-y-8">
-          
-          {/* Interactive Floating Tool Dock Selector */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {/* Software Showcase */}
+        <div className="space-y-6 reveal">
+
+          {/* Tool Selector Dock */}
+          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {softwareList.map((tool, idx) => {
               const ToolLogo = tool.logo;
               const isSelected = activeTool === idx;
@@ -143,42 +157,37 @@ export default function SoftwareLanguages() {
                   onClick={() => setActiveTool(idx)}
                   className={`p-3.5 rounded-2xl transition-all duration-300 flex flex-col items-center justify-center text-center gap-2 group relative ${
                     isSelected
-                      ? `bg-slate-950 shadow-xl ${tool.activeBorder} border-2 -translate-y-1`
-                      : 'bg-slate-950/60 border border-slate-800 hover:border-slate-700 hover:bg-slate-950'
+                      ? `bg-slate-950 shadow-xl ${tool.activeBorder} border-2 -translate-y-1.5 scale-105`
+                      : 'bg-slate-950/60 border border-slate-800 hover:border-slate-700 hover:bg-slate-950 hover:-translate-y-0.5'
                   }`}
                 >
-                  {/* Vector Logo with Glow */}
-                  <div className={`p-2 rounded-xl transition-transform duration-300 ${isSelected ? 'scale-110' : 'group-hover:scale-105'}`}>
-                    <ToolLogo className="w-10 h-10 drop-shadow-md" />
+                  <div className={`p-1.5 rounded-xl transition-transform duration-300 ${isSelected ? 'scale-110' : 'group-hover:scale-105'}`}>
+                    <ToolLogo className="w-9 h-9 drop-shadow-md" />
                   </div>
-                  
-                  <div className="text-xs font-bold text-white truncate max-w-full">
-                    {tool.name}
-                  </div>
-                  
-                  {/* Mini Percentage Badge */}
+                  <div className="text-xs font-bold text-white truncate max-w-full leading-tight">{tool.name}</div>
                   <span className={`text-[11px] font-mono font-bold px-2 py-0.5 rounded-full ${
                     isSelected ? 'bg-amber-500 text-slate-950' : 'bg-slate-900 text-amber-400'
                   }`}>
                     {tool.proficiency}%
                   </span>
-
-                  {isSelected && (
-                    <span className="absolute -bottom-1.5 w-3 h-3 bg-amber-500 rotate-45 rounded-sm"></span>
-                  )}
+                  {isSelected && <span className="absolute -bottom-1.5 w-3 h-3 bg-amber-500 rotate-45 rounded-sm" />}
                 </button>
               );
             })}
           </div>
 
-          {/* ACTIVE EXPANDED FEATURE SPOTLIGHT CARD */}
+          {/* Expanded Tool Detail Card */}
           <div className={`p-6 sm:p-10 rounded-3xl bg-gradient-to-br ${currentTool.bgGlow} bg-slate-950 border ${currentTool.borderColor} shadow-2xl relative overflow-hidden transition-all duration-500`}>
-            
+
+            {/* Animated scan line on the card */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent animate-measure-scan" />
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
-              {/* Left Column: Big Logo, Title, and Description */}
-              <div className="lg:col-span-8 space-y-4">
-                
+
+              {/* Left: Logo + Description + Features */}
+              <div className="lg:col-span-8 space-y-5">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
                     <CurrentLogo className="w-14 h-14" />
@@ -187,58 +196,40 @@ export default function SoftwareLanguages() {
                     <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider block">
                       {currentTool.category}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
-                      {currentTool.name}
-                    </h3>
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white">{currentTool.name}</h3>
                   </div>
                 </div>
 
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed pt-1">
-                  {currentTool.description}
-                </p>
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">{currentTool.description}</p>
 
-                {/* Key Technical Capabilities */}
-                <div className="pt-2">
-                  <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+                <div>
+                  <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-3">
                     Core QS Workflow Capabilities:
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {currentTool.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 font-medium">
+                      <div key={fIdx} className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 font-medium hover:border-amber-500/30 transition-colors">
                         <Check className="w-4 h-4 text-amber-400 shrink-0" />
                         <span>{feat}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-
               </div>
 
-              {/* Right Column: Circular Proficiency Gauge & Mastery Rating */}
-              <div className="lg:col-span-4 flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-3">
-                
-                {/* Radial Circular Progress */}
+              {/* Right: Proficiency gauge */}
+              <div className="lg:col-span-4 flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-4">
                 <div className="relative w-32 h-32 flex items-center justify-center">
                   <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#1e293b" strokeWidth="8" fill="transparent" />
                     <circle
-                      cx="50"
-                      cy="50"
-                      r="40"
-                      stroke="#1e293b"
-                      strokeWidth="8"
-                      fill="transparent"
-                    />
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="40"
-                      stroke="#f59e0b"
-                      strokeWidth="8"
+                      cx="50" cy="50" r="40"
+                      stroke="#f59e0b" strokeWidth="8"
                       strokeDasharray="251.2"
                       strokeDashoffset={251.2 - (251.2 * currentTool.proficiency) / 100}
                       strokeLinecap="round"
                       fill="transparent"
-                      className="transition-all duration-1000 ease-out"
+                      className="transition-all duration-800 ease-out"
                     />
                   </svg>
                   <div className="absolute flex flex-col items-center">
@@ -246,36 +237,32 @@ export default function SoftwareLanguages() {
                     <span className="text-[10px] text-slate-400 uppercase">Proficiency</span>
                   </div>
                 </div>
-
                 <div>
                   <span className="text-sm font-bold text-amber-400 block">{currentTool.levelText}</span>
                   <span className="text-xs text-slate-400">Practical Construction Practice</span>
                 </div>
-
               </div>
 
             </div>
-
           </div>
-
         </div>
 
-        {/* 09. LANGUAGES (Interactive bilingual cards) */}
+        {/* ── 09. Languages ── */}
         <div>
-          <div className="mb-6">
+          <div className="mb-6 reveal">
             <span className="text-xs font-semibold text-amber-400 tracking-wider uppercase block mb-1">
-              09. COMMUNICATION &amp; FLUENCY
+              09. Communication &amp; Fluency
             </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-              Languages
-            </h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Languages</h3>
+            <div className="mt-3 w-16 h-1 bg-gradient-to-r from-amber-500 to-amber-300 rounded-full" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {LANGUAGES_DATA.map((lang, idx) => (
               <div
                 key={idx}
-                className="p-5 sm:p-6 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between space-y-4 hover:border-amber-500/40 transition-all"
+                className="reveal p-5 sm:p-6 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between space-y-4 hover:border-amber-500/40 hover:-translate-y-0.5 transition-all duration-200"
+                style={{ transitionDelay: `${idx * 0.1}s` }}
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
@@ -291,7 +278,6 @@ export default function SoftwareLanguages() {
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{lang.description}</p>
                 </div>
 
-                {/* Progress Bar */}
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs font-mono text-slate-400">
                     <span>Fluency</span>
@@ -299,9 +285,9 @@ export default function SoftwareLanguages() {
                   </div>
                   <div className="w-full h-2 rounded-full bg-slate-900 overflow-hidden border border-slate-800">
                     <div
-                      className="h-full bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full"
+                      className="h-full bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full transition-all duration-1000"
                       style={{ width: `${lang.percent}%` }}
-                    ></div>
+                    />
                   </div>
                 </div>
               </div>

@@ -66,3 +66,4 @@ export const ExcelLogo = ({ className = "w-8 h-8" }) => (
     <text x="18" y="29" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold" fontFamily="sans-serif">X</text>
   </svg>
 );
+
