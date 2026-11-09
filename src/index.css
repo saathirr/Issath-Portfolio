@@ -7,244 +7,170 @@
     @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-950;
     overflow-x: hidden;
   }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #020617;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #1e293b;
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #f59e0b;
-  }
+  html { scroll-behavior: smooth; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #020617; }
+  ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
 }
 
-/* ============================================
-   CONSTRUCTION ANIMATION KEYFRAMES
-   ============================================ */
+/* =============================================
+   KEYFRAME ANIMATIONS
+   ============================================= */
 
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50%       { transform: translateY(-10px) rotate(1deg); }
+  50%       { transform: translateY(-12px) rotate(1.5deg); }
 }
-
 @keyframes floatReverse {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50%       { transform: translateY(10px) rotate(-1deg); }
+  50%       { transform: translateY(12px) rotate(-1.5deg); }
 }
-
 @keyframes craneSwing {
-  0%, 100% { transform: rotate(-4deg); }
-  50%       { transform: rotate(4deg); }
+  0%, 100% { transform: rotate(-5deg); }
+  50%       { transform: rotate(5deg); }
 }
-
 @keyframes craneLoad {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(12px); }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(16px); }
 }
-
 @keyframes shimmerSlide {
   0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
-
 @keyframes pulseGlow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
+  0%, 100% { opacity: 0.4; transform: scale(1); }
   50%       { opacity: 1;   transform: scale(1.08); }
 }
-
 @keyframes measureScan {
   0%   { transform: translateX(-100%); opacity: 0; }
   10%  { opacity: 1; }
   90%  { opacity: 1; }
   100% { transform: translateX(100%); opacity: 0; }
 }
-
-@keyframes rulerTick {
-  0%   { transform: scaleY(0); }
-  100% { transform: scaleY(1); }
-}
-
-@keyframes buildUp {
-  0%   { transform: scaleY(0); opacity: 0; }
-  100% { transform: scaleY(1); opacity: 1; }
-}
-
-@keyframes slideInLeft {
-  0%   { transform: translateX(-40px); opacity: 0; }
-  100% { transform: translateX(0);     opacity: 1; }
-}
-
-@keyframes slideInRight {
-  0%   { transform: translateX(40px); opacity: 0; }
-  100% { transform: translateX(0);    opacity: 1; }
-}
-
-@keyframes slideInUp {
-  0%   { transform: translateY(30px); opacity: 0; }
-  100% { transform: translateY(0);    opacity: 1; }
-}
-
 @keyframes fadeIn {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-
+@keyframes slideInUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-40px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+@keyframes slideInRight {
+  from { transform: translateX(40px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
 @keyframes scaleIn {
-  0%   { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1);   opacity: 1; }
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
 }
-
-@keyframes countUp {
-  0%   { transform: translateY(10px); opacity: 0; }
-  100% { transform: translateY(0);    opacity: 1; }
-}
-
-@keyframes borderDraw {
-  0%   { stroke-dashoffset: 400; }
-  100% { stroke-dashoffset: 0; }
-}
-
-@keyframes workerWalk {
-  0%   { transform: translateX(-40px); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateX(calc(100vw + 40px)); opacity: 0; }
-}
-
-@keyframes excavatorDig {
-  0%, 100% { transform: rotate(-5deg); }
-  50%       { transform: rotate(5deg); }
-}
-
-@keyframes brickLay {
-  0%   { transform: scaleX(0); transform-origin: left; opacity: 0; }
-  100% { transform: scaleX(1); opacity: 1; }
-}
-
-@keyframes blueprintGrid {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes typewrite {
-  from { width: 0; }
-  to   { width: 100%; }
-}
-
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-
 @keyframes rotateSlow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
-
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
-  50%       { box-shadow: 0 0 25px rgba(245, 158, 11, 0.6), 0 0 50px rgba(245, 158, 11, 0.2); }
+  0%, 100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.25); }
+  50%       { box-shadow: 0 0 24px rgba(245, 158, 11, 0.6), 0 0 48px rgba(245, 158, 11, 0.15); }
+}
+@keyframes borderDraw {
+  from { stroke-dashoffset: 400; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes buildUp {
+  from { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes skillBar {
+  from { width: 0%; }
+  to   { width: var(--bar-w, 80%); }
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes bounceIn {
+  0%   { transform: scale(0.3); opacity: 0; }
+  50%  { transform: scale(1.1); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes shimmerCard {
+  0%   { background-position: -300% 0; }
+  100% { background-position: 300% 0; }
+}
+@keyframes workerWave {
+  0%, 100% { transform: rotate(0deg); }
+  25%       { transform: rotate(-15deg); }
+  75%       { transform: rotate(15deg); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes particleFly {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-80px) translateX(20px) scale(0); opacity: 0; }
 }
 
-@keyframes progressFill {
-  0%   { width: 0%; }
-  100% { width: var(--progress-width, 100%); }
-}
+/* =============================================
+   UTILITY CLASSES
+   ============================================= */
 
-/* ============================================
-   UTILITY ANIMATION CLASSES
-   ============================================ */
+.animate-float-slow    { animation: floatSlow 6s ease-in-out infinite; }
+.animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
+.animate-crane-swing   { transform-origin: top center; animation: craneSwing 6s ease-in-out infinite; }
+.animate-crane-load    { animation: craneLoad 2.5s ease-in-out infinite; }
+.animate-pulse-glow    { animation: pulseGlow 3s ease-in-out infinite; }
+.animate-measure-scan  { animation: measureScan 4s ease-in-out infinite; }
+.animate-fade-in       { animation: fadeIn 0.9s ease-out both; }
+.animate-slide-in-up   { animation: slideInUp 0.7s ease-out both; }
+.animate-slide-in-left { animation: slideInLeft 0.7s ease-out both; }
+.animate-slide-in-right{ animation: slideInRight 0.7s ease-out both; }
+.animate-scale-in      { animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+.animate-glow-pulse    { animation: glowPulse 2s ease-in-out infinite; }
+.animate-rotate-slow   { animation: rotateSlow 20s linear infinite; }
+.animate-spin-slow     { animation: spinSlow 15s linear infinite; }
+.animate-bounce-in     { animation: bounceIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+.animate-build-up      { animation: buildUp 0.8s ease-out both; }
+.animate-draw-line     { stroke-dasharray: 1000; animation: drawLine 2s ease-out forwards; }
+.animate-ticker        { animation: ticker 20s linear infinite; }
+.animate-marquee       { animation: marquee 25s linear infinite; }
 
-.animate-float-slow {
-  animation: floatSlow 6s ease-in-out infinite;
-}
-.animate-float-reverse {
-  animation: floatReverse 7s ease-in-out infinite;
-}
-.animate-crane-swing {
-  transform-origin: top center;
-  animation: craneSwing 6s ease-in-out infinite;
-}
-.animate-crane-load {
-  animation: craneLoad 3s ease-in-out infinite;
-}
-.animate-pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-.animate-measure-scan {
-  animation: measureScan 4s ease-in-out infinite;
-}
-.animate-slide-in-left {
-  animation: slideInLeft 0.7s ease-out both;
-}
-.animate-slide-in-right {
-  animation: slideInRight 0.7s ease-out both;
-}
-.animate-slide-in-up {
-  animation: slideInUp 0.6s ease-out both;
-}
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out both;
-}
-.animate-scale-in {
-  animation: scaleIn 0.5s ease-out both;
-}
-.animate-glow-pulse {
-  animation: glowPulse 2s ease-in-out infinite;
-}
-.animate-rotate-slow {
-  animation: rotateSlow 20s linear infinite;
-}
-
-/* Scroll-reveal: items start hidden, JS adds 'revealed' class */
+/* Scroll-reveal base states */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
-.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
-}
-.reveal-left.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-.reveal-right {
-  opacity: 0;
-  transform: translateX(30px);
-  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
-}
-.reveal-right.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.reveal-scale.revealed {
-  opacity: 1;
-  transform: scale(1);
-}
+.reveal.revealed          { opacity: 1; transform: translateY(0); }
+.reveal-left              { opacity: 0; transform: translateX(-36px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+.reveal-left.revealed     { opacity: 1; transform: translateX(0); }
+.reveal-right             { opacity: 0; transform: translateX(36px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+.reveal-right.revealed    { opacity: 1; transform: translateX(0); }
+.reveal-scale             { opacity: 0; transform: scale(0.88); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.reveal-scale.revealed    { opacity: 1; transform: scale(1); }
 
-/* Shimmer heading text */
+/* Shimmer text */
 .shimmer-text {
   background: linear-gradient(90deg, #f59e0b 0%, #fef08a 40%, #f59e0b 60%, #fbbf24 100%);
   background-size: 200% auto;
@@ -254,42 +180,72 @@
   animation: shimmerSlide 4s linear infinite;
 }
 
-/* CAD grid background */
+/* Shimmer card overlay */
+.shimmer-card {
+  background: linear-gradient(105deg, transparent 40%, rgba(245,158,11,0.08) 50%, transparent 60%);
+  background-size: 300% auto;
+  animation: shimmerCard 3s linear infinite;
+}
+
+/* CAD grid */
 .bg-cad-pattern {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(to right,  rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
-/* Construction hazard stripes */
-.hazard-line {
+/* Dot grid */
+.bg-dot-pattern {
+  background-image: radial-gradient(circle, rgba(245,158,11,0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Hazard stripe */
+.hazard-stripe {
   background: repeating-linear-gradient(
     -45deg,
-    #f59e0b,
-    #f59e0b 10px,
-    #0f172a 10px,
-    #0f172a 20px
+    rgba(245,158,11,0.15),
+    rgba(245,158,11,0.15) 8px,
+    transparent 8px,
+    transparent 16px
   );
 }
 
-/* Construction beam effect */
-.steel-beam {
-  background: linear-gradient(180deg, #64748b 0%, #94a3b8 50%, #64748b 100%);
+/* Glow button */
+.btn-glow {
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 20px rgba(245,158,11,0.5), 0 0 40px rgba(245,158,11,0.2);
+  transform: translateY(-2px);
 }
 
-/* Animated progress fill for experience bars */
-.progress-animated {
-  animation: progressFill 1.4s ease-out both;
+/* Animated border card */
+.card-animated-border {
+  position: relative;
+  background: linear-gradient(#0f172a, #0f172a) padding-box,
+              linear-gradient(135deg, #f59e0b, #06b6d4, #f59e0b) border-box;
+  border: 1px solid transparent;
+  transition: all 0.4s ease;
+}
+.card-animated-border:hover {
+  background: linear-gradient(#1e293b, #1e293b) padding-box,
+              linear-gradient(135deg, #f59e0b, #10b981, #f59e0b) border-box;
 }
 
-/* Print styles for CV */
+/* Skill bar fill animation */
+.skill-bar-fill {
+  animation: skillBar 1.5s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+/* Number counter glow */
+.number-glow {
+  text-shadow: 0 0 20px rgba(245,158,11,0.6);
+}
+
+/* Print */
 @media print {
-  body {
-    background: white !important;
-    color: black !important;
-  }
-  .no-print {
-    display: none !important;
-  }
+  body { background: white !important; color: black !important; }
+  .no-print { display: none !important; }
 }
