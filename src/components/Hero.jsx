@@ -1,58 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { ArrowRight, FileDown, Mail, MapPin, Phone, Building2, ShieldCheck } from 'lucide-react';
 import { PERSONAL_INFO, HERO_DATA } from '../data/portfolioData';
 import issathImg from '../assets/issath.png';
 
 export default function Hero({ onOpenCV }) {
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-  const [ambientOffset, setAmbientOffset] = useState(0);
-  const cardRef = useRef(null);
-
-  // Ambient breathing tilt when not hovered
-  useEffect(() => {
-    let frame;
-    let angle = 0;
-    const animate = () => {
-      if (!isHovered) {
-        angle += 0.018;
-        setAmbientOffset(Math.sin(angle) * 2.5);
-      }
-      frame = requestAnimationFrame(animate);
-    };
-    frame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frame);
-  }, [isHovered]);
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const mouseX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    const mouseY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-    setRotate({
-      x: Math.max(-14, Math.min(14, -mouseY * 14)),
-      y: Math.max(-14, Math.min(14, mouseX * 14)),
-    });
-  };
-
-  const handleTouchMove = (e) => {
-    if (!cardRef.current || e.touches.length === 0) return;
-    setIsHovered(true);
-    const touch = e.touches[0];
-    const rect = cardRef.current.getBoundingClientRect();
-    const tx = (touch.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    const ty = (touch.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-    setRotate({
-      x: Math.max(-12, Math.min(12, -ty * 12)),
-      y: Math.max(-12, Math.min(12, tx * 12)),
-    });
-  };
-
-  const handleLeave = () => {
-    setIsHovered(false);
-    setRotate({ x: 0, y: 0 });
-  };
-
   return (
     <section className="relative pt-10 pb-16 sm:pt-20 sm:pb-28 lg:pt-24 lg:pb-32 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-slate-800 bg-cad-pattern overflow-hidden">
 
@@ -183,156 +134,113 @@ export default function Hero({ onOpenCV }) {
             </div>
           </div>
 
-          {/* ── RIGHT: Clipping Circle Photo ── */}
-          <div className="lg:col-span-5 flex justify-center items-end order-1 lg:order-2">
-            <div
-              ref={cardRef}
-              onMouseMove={handleMouseMove}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={handleLeave}
-              onTouchStart={() => setIsHovered(true)}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleLeave}
-              style={{ perspective: '1200px' }}
-              className="relative w-full max-w-[300px] sm:max-w-[380px] flex flex-col items-center justify-end select-none"
-            >
-              {/* 3D tilt wrapper */}
+          {/* ── RIGHT: Professional Circular Avatar (Head to Hip) with Construction Animation ── */}
+          <div className="lg:col-span-5 flex justify-center items-center order-1 lg:order-2">
+            <div className="relative w-full max-w-[340px] sm:max-w-[400px] flex flex-col items-center justify-center select-none py-6">
+
+              {/* Outer Construction Technical Orbit Rings */}
+              {/* Ring 1: Slow rotating dashed compass ring */}
               <div
-                style={{
-                  transform: `rotateX(${rotate.x + ambientOffset}deg) rotateY(${rotate.y}deg) scale(${isHovered ? 1.03 : 1})`,
-                  transition: isHovered ? 'transform 0.08s ease-out' : 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                  transformStyle: 'preserve-3d',
-                }}
-                className="relative flex flex-col items-center justify-end w-full"
+                className="absolute inset-0 m-auto w-[114%] h-[114%] rounded-full border border-amber-500/20 pointer-events-none animate-spin-slow"
+                style={{ borderStyle: 'dashed' }}
               >
+                {/* 4 Cardinal crosshair indicators */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-amber-400/80 shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-amber-400/80 shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
+                <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cyan-400/80 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cyan-400/80 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+              </div>
 
-                {/* ── Decorative animated rings behind the circle ── */}
-                {/* Outermost slow spin ring */}
+              {/* Ring 2: Counter-rotating cyan technical ring */}
+              <div
+                className="absolute inset-0 m-auto w-[106%] h-[106%] rounded-full border border-cyan-500/25 pointer-events-none"
+                style={{
+                  borderStyle: 'dashed',
+                  animation: 'rotateSlow 18s linear infinite reverse',
+                }}
+              />
+
+              {/* Ambient Radial Backlight Glow */}
+              <div
+                className="absolute inset-0 m-auto w-[95%] h-[95%] rounded-full pointer-events-none animate-pulse-glow"
+                style={{
+                  background: 'radial-gradient(circle, rgba(245,158,11,0.18) 0%, rgba(6,182,212,0.08) 45%, transparent 70%)',
+                  boxShadow: '0 0 80px rgba(245,158,11,0.22)',
+                }}
+              />
+
+              {/* ── Main Circular Clipping Frame (Head to Hip) ── */}
+              <div
+                className="relative z-20 w-72 h-72 sm:w-80 sm:h-80 md:w-88 md:h-88 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-amber-500/40 shadow-2xl shadow-black/80 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 transition-all duration-300 hover:border-amber-400/70 hover:shadow-amber-500/20 group"
+              >
+                {/* Background CAD Grid inside the circle */}
+                <div className="absolute inset-0 bg-cad-pattern opacity-40 pointer-events-none" />
+
+                {/* Subtle Inner Circular Horizon / Glow */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-amber-500/10 pointer-events-none" />
+
+                {/* Rotating scanning radar line inside circle */}
                 <div
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none animate-spin-slow"
-                  style={{ width: '115%', paddingBottom: '57.5%', transform: 'translateX(-50%)' }}
+                  className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
+                  style={{ animation: 'rotateSlow 8s linear infinite' }}
                 >
-                  <div className="absolute inset-0 rounded-full border border-amber-500/15 border-dashed" />
+                  <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-400/35 to-transparent" />
                 </div>
 
-                {/* Medium counter-spin ring */}
-                <div
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none"
+                {/* Mohamed Issath Photo: Cropped cleanly from head down to hip */}
+                <img
+                  src={issathImg}
+                  alt="Mohamed Issath - Quantity Surveyor"
+                  className="absolute left-1/2 pointer-events-none transition-transform duration-500 group-hover:scale-105"
                   style={{
-                    width: '108%',
-                    aspectRatio: '1',
-                    animation: 'rotateSlow 18s linear infinite reverse',
-                  }}
-                >
-                  <div
-                    className="w-full h-full rounded-full border border-cyan-500/20"
-                    style={{ borderStyle: 'dashed' }}
-                  />
-                </div>
-
-                {/* Pulsing amber glow ring */}
-                <div
-                  className="absolute bottom-0 left-1/2 pointer-events-none animate-pulse-glow rounded-full"
-                  style={{
-                    width: '100%',
-                    aspectRatio: '1',
                     transform: 'translateX(-50%)',
-                    background: 'radial-gradient(ellipse at center, rgba(245,158,11,0.12) 0%, transparent 70%)',
-                    boxShadow: '0 0 60px rgba(245,158,11,0.15), inset 0 0 40px rgba(245,158,11,0.08)',
+                    top: '2%',
+                    height: '195%',
+                    width: 'auto',
+                    objectFit: 'contain',
+                    objectPosition: 'top center',
+                    filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.85)) drop-shadow(0 0 15px rgba(245,158,11,0.15))',
                   }}
                 />
 
-                {/* ── MAIN CIRCLE with clipping mask ── */}
-                {/* The circle clips the bottom half; person rises from the top */}
-                <div
-                  className="relative z-20 w-full"
-                  style={{ aspectRatio: '1', borderRadius: '50%', overflow: 'hidden' }}
-                >
-                  {/* Gradient circle background */}
-                  <div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background: 'radial-gradient(ellipse at 50% 110%, rgba(245,158,11,0.18) 0%, rgba(6,182,212,0.08) 50%, rgba(2,6,23,0.95) 80%)',
-                      border: '2px solid rgba(245,158,11,0.35)',
-                      boxShadow: '0 0 40px rgba(245,158,11,0.15), inset 0 -20px 60px rgba(245,158,11,0.10)',
-                    }}
-                  />
-
-                  {/* Inner dashed ring */}
-                  <div
-                    className="absolute inset-3 rounded-full pointer-events-none"
-                    style={{ border: '1px dashed rgba(245,158,11,0.25)' }}
-                  />
-
-                  {/* Rotating scan line inside circle */}
-                  <div
-                    className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
-                    style={{ animation: 'rotateSlow 6s linear infinite' }}
-                  >
-                    <div
-                      className="absolute top-1/2 left-0 right-0 h-px"
-                      style={{ background: 'linear-gradient(to right, transparent, rgba(245,158,11,0.4), transparent)' }}
-                    />
-                  </div>
-
-                  {/* Person photo — positioned so body fills circle, head emerges top */}
-                  <img
-                    src={issathImg}
-                    alt="Mohamed Issath – Quantity Surveyor"
-                    className="absolute left-1/2 pointer-events-none"
-                    style={{
-                      transform: 'translateX(-50%)',
-                      bottom: '-5%',
-                      height: '95%',
-                      width: 'auto',
-                      objectFit: 'contain',
-                      objectPosition: 'bottom center',
-                      filter: 'drop-shadow(0 -10px 30px rgba(245,158,11,0.15))',
-                    }}
-                  />
-
-                  {/* Bottom gradient fade — blends feet into circle edge */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none"
-                    style={{ background: 'linear-gradient(to top, rgba(245,158,11,0.08), transparent)' }}
-                  />
-                </div>
-
-                {/* ── Floating badge 1: QAR 218M (top-right) ── */}
-                <div
-                  style={{ transform: 'translateZ(65px)', animationDelay: '0s' }}
-                  className="absolute top-4 -right-2 sm:-right-6 z-30 p-2 sm:p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-amber-500/40 shadow-xl shadow-black/50 animate-float-slow"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950 shrink-0">
-                      <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[9px] sm:text-[10px] text-slate-400 block font-mono uppercase tracking-wider">Top Project</span>
-                      <span className="text-xs sm:text-sm font-bold text-amber-400">QAR 218 Million</span>
-                    </div>
-                  </div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-300 block mt-0.5">ABK Tower &bull; Lusail</span>
-                </div>
-
-                {/* ── Floating badge 2: Civil & MEP QS (left) ── */}
-                <div
-                  style={{ transform: 'translateZ(75px)', animationDelay: '1.8s' }}
-                  className="absolute top-1/2 -translate-y-1/2 -left-2 sm:-left-8 z-30 p-2 sm:p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-cyan-500/40 shadow-xl shadow-black/50 animate-float-slow"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0">
-                      <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[9px] sm:text-[10px] text-slate-400 block font-mono uppercase tracking-wider">Role</span>
-                      <span className="text-[11px] sm:text-xs font-bold text-white">Civil &amp; MEP QS</span>
-                    </div>
-                  </div>
-                  <span className="text-[9px] sm:text-[10px] text-emerald-400 block mt-0.5">&bull; Jeddah, Saudi Arabia 🇸🇦</span>
-                </div>
-
+                {/* Smooth bottom gradient overlay to blend hip into circle edge */}
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent pointer-events-none" />
               </div>
+
+              {/* ── Floating Badge 1: Top Project QAR 218M (Top Right) ── */}
+              <div
+                className="absolute -top-1 -right-2 sm:-right-4 z-30 p-2.5 sm:p-3 rounded-2xl bg-slate-900/95 backdrop-blur-md border border-amber-500/40 shadow-xl shadow-black/60 text-left transition-transform duration-300 hover:scale-105 hover:border-amber-400 animate-float-slow"
+                style={{ animationDelay: '0s' }}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-amber-500 flex items-center justify-center text-slate-950 font-bold shrink-0 shadow-md">
+                    <Building2 className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[9px] sm:text-[10px] text-slate-400 block font-mono uppercase tracking-wider">Top Project</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-amber-400 font-mono">QAR 218 Million</span>
+                  </div>
+                </div>
+                <span className="text-[10px] text-slate-300 block mt-1 pl-0.5">ABK Tower &bull; Lusail</span>
+              </div>
+
+              {/* ── Floating Badge 2: Civil & MEP QS (Bottom Left) ── */}
+              <div
+                className="absolute -bottom-2 -left-2 sm:-left-6 z-30 p-2.5 sm:p-3 rounded-2xl bg-slate-900/95 backdrop-blur-md border border-cyan-500/40 shadow-xl shadow-black/60 text-left transition-transform duration-300 hover:scale-105 hover:border-cyan-400 animate-float-slow"
+                style={{ animationDelay: '1.6s' }}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-bold shrink-0 shadow-md">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[9px] sm:text-[10px] text-slate-400 block font-mono uppercase tracking-wider">Discipline</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-white">Civil &amp; MEP QS</span>
+                  </div>
+                </div>
+                <span className="text-[10px] text-emerald-400 block mt-1 pl-0.5">&bull; Jeddah, Saudi Arabia 🇸🇦</span>
+              </div>
+
             </div>
           </div>
 
