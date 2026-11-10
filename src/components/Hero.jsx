@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, FileDown, Mail, MapPin, Phone, Building2, ShieldCheck, Compass } from 'lucide-react';
+import { ArrowRight, FileDown, Mail, MapPin, Phone, Building2, ShieldCheck } from 'lucide-react';
 import { PERSONAL_INFO, HERO_DATA } from '../data/portfolioData';
 import issathImg from '../assets/issath.png';
 
@@ -183,8 +183,8 @@ export default function Hero({ onOpenCV }) {
             </div>
           </div>
 
-          {/* ── RIGHT: 3D Photo Card ── */}
-          <div className="lg:col-span-5 flex justify-center items-center order-1 lg:order-2">
+          {/* ── RIGHT: Clipping Circle Photo ── */}
+          <div className="lg:col-span-5 flex justify-center items-end order-1 lg:order-2">
             <div
               ref={cardRef}
               onMouseMove={handleMouseMove}
@@ -194,51 +194,117 @@ export default function Hero({ onOpenCV }) {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleLeave}
               style={{ perspective: '1200px' }}
-              className="relative w-full max-w-[300px] sm:max-w-md flex flex-col items-center justify-center cursor-pointer select-none py-4"
+              className="relative w-full max-w-[300px] sm:max-w-[380px] flex flex-col items-center justify-end select-none"
             >
-              {/* 3D rotating container */}
+              {/* 3D tilt wrapper */}
               <div
                 style={{
                   transform: `rotateX(${rotate.x + ambientOffset}deg) rotateY(${rotate.y}deg) scale(${isHovered ? 1.03 : 1})`,
                   transition: isHovered ? 'transform 0.08s ease-out' : 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)',
                   transformStyle: 'preserve-3d',
                 }}
-                className="relative flex flex-col items-center justify-center"
+                className="relative flex flex-col items-center justify-end w-full"
               >
-                {/* Foundation ring */}
+
+                {/* ── Decorative animated rings behind the circle ── */}
+                {/* Outermost slow spin ring */}
                 <div
-                  style={{ transform: 'translateZ(-40px) rotateX(65deg)' }}
-                  className="absolute bottom-2 sm:bottom-4 w-56 h-56 sm:w-72 sm:h-72 rounded-full border-2 border-amber-500/40 bg-gradient-to-tr from-amber-500/15 via-slate-900/80 to-cyan-500/15 shadow-2xl animate-pulse pointer-events-none"
+                  className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none animate-spin-slow"
+                  style={{ width: '115%', paddingBottom: '57.5%', transform: 'translateX(-50%)' }}
                 >
-                  <div className="absolute inset-3 sm:inset-4 rounded-full border border-dashed border-amber-400/40" />
-                  <div className="absolute inset-8 sm:inset-10 rounded-full border border-slate-700/60" />
+                  <div className="absolute inset-0 rounded-full border border-amber-500/15 border-dashed" />
                 </div>
 
-                {/* Rotating compass ring */}
+                {/* Medium counter-spin ring */}
                 <div
-                  style={{ transform: 'translateZ(-20px)', animationDuration: '28s' }}
-                  className="absolute bottom-4 sm:bottom-6 w-44 h-44 sm:w-56 sm:h-56 rounded-full border border-amber-500/25 animate-spin pointer-events-none"
-                />
-
-                {/* Person photo */}
-                <div
-                  style={{ transform: 'translateZ(30px)' }}
-                  className="relative z-20 flex justify-center drop-shadow-[0_24px_40px_rgba(0,0,0,0.9)]"
+                  className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    width: '108%',
+                    aspectRatio: '1',
+                    animation: 'rotateSlow 18s linear infinite reverse',
+                  }}
                 >
-                  <img
-                    src={issathImg}
-                    alt="Mohamed Issath – Quantity Surveyor"
-                    className="w-auto h-[280px] sm:h-[400px] md:h-[450px] lg:h-[480px] object-contain pointer-events-none"
+                  <div
+                    className="w-full h-full rounded-full border border-cyan-500/20"
+                    style={{ borderStyle: 'dashed' }}
                   />
                 </div>
 
-                {/* Badge 1: QAR 218M */}
+                {/* Pulsing amber glow ring */}
+                <div
+                  className="absolute bottom-0 left-1/2 pointer-events-none animate-pulse-glow rounded-full"
+                  style={{
+                    width: '100%',
+                    aspectRatio: '1',
+                    transform: 'translateX(-50%)',
+                    background: 'radial-gradient(ellipse at center, rgba(245,158,11,0.12) 0%, transparent 70%)',
+                    boxShadow: '0 0 60px rgba(245,158,11,0.15), inset 0 0 40px rgba(245,158,11,0.08)',
+                  }}
+                />
+
+                {/* ── MAIN CIRCLE with clipping mask ── */}
+                {/* The circle clips the bottom half; person rises from the top */}
+                <div
+                  className="relative z-20 w-full"
+                  style={{ aspectRatio: '1', borderRadius: '50%', overflow: 'hidden' }}
+                >
+                  {/* Gradient circle background */}
+                  <div
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: 'radial-gradient(ellipse at 50% 110%, rgba(245,158,11,0.18) 0%, rgba(6,182,212,0.08) 50%, rgba(2,6,23,0.95) 80%)',
+                      border: '2px solid rgba(245,158,11,0.35)',
+                      boxShadow: '0 0 40px rgba(245,158,11,0.15), inset 0 -20px 60px rgba(245,158,11,0.10)',
+                    }}
+                  />
+
+                  {/* Inner dashed ring */}
+                  <div
+                    className="absolute inset-3 rounded-full pointer-events-none"
+                    style={{ border: '1px dashed rgba(245,158,11,0.25)' }}
+                  />
+
+                  {/* Rotating scan line inside circle */}
+                  <div
+                    className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
+                    style={{ animation: 'rotateSlow 6s linear infinite' }}
+                  >
+                    <div
+                      className="absolute top-1/2 left-0 right-0 h-px"
+                      style={{ background: 'linear-gradient(to right, transparent, rgba(245,158,11,0.4), transparent)' }}
+                    />
+                  </div>
+
+                  {/* Person photo — positioned so body fills circle, head emerges top */}
+                  <img
+                    src={issathImg}
+                    alt="Mohamed Issath – Quantity Surveyor"
+                    className="absolute left-1/2 pointer-events-none"
+                    style={{
+                      transform: 'translateX(-50%)',
+                      bottom: '-5%',
+                      height: '95%',
+                      width: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'bottom center',
+                      filter: 'drop-shadow(0 -10px 30px rgba(245,158,11,0.15))',
+                    }}
+                  />
+
+                  {/* Bottom gradient fade — blends feet into circle edge */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none"
+                    style={{ background: 'linear-gradient(to top, rgba(245,158,11,0.08), transparent)' }}
+                  />
+                </div>
+
+                {/* ── Floating badge 1: QAR 218M (top-right) ── */}
                 <div
                   style={{ transform: 'translateZ(65px)', animationDelay: '0s' }}
-                  className="absolute top-6 sm:top-10 -right-2 sm:-right-6 z-30 p-2 sm:p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-amber-500/40 shadow-xl animate-float-slow"
+                  className="absolute top-4 -right-2 sm:-right-6 z-30 p-2 sm:p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-amber-500/40 shadow-xl shadow-black/50 animate-float-slow"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950 shrink-0">
                       <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
                     <div>
@@ -249,13 +315,13 @@ export default function Hero({ onOpenCV }) {
                   <span className="text-[9px] sm:text-[10px] text-slate-300 block mt-0.5">ABK Tower &bull; Lusail</span>
                 </div>
 
-                {/* Badge 2: Civil & MEP QS — FIXED: single style prop */}
+                {/* ── Floating badge 2: Civil & MEP QS (left) ── */}
                 <div
                   style={{ transform: 'translateZ(75px)', animationDelay: '1.8s' }}
-                  className="absolute bottom-14 sm:bottom-20 -left-2 sm:-left-8 z-30 p-2 sm:p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-cyan-500/40 shadow-xl animate-float-slow"
+                  className="absolute top-1/2 -translate-y-1/2 -left-2 sm:-left-8 z-30 p-2 sm:p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-cyan-500/40 shadow-xl shadow-black/50 animate-float-slow"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0">
                       <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
                     <div>
@@ -266,14 +332,6 @@ export default function Hero({ onOpenCV }) {
                   <span className="text-[9px] sm:text-[10px] text-emerald-400 block mt-0.5">&bull; Jeddah, Saudi Arabia 🇸🇦</span>
                 </div>
 
-                {/* Tilt hint */}
-                <div
-                  style={{ transform: 'translateZ(40px)' }}
-                  className="absolute -bottom-5 sm:-bottom-7 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-[10px] sm:text-[11px] text-slate-400 font-mono flex items-center gap-1.5"
-                >
-                  <Compass className="w-3.5 h-3.5 text-amber-400 animate-spin" style={{ animationDuration: '8s' }} />
-                  <span>Hover / touch to tilt</span>
-                </div>
               </div>
             </div>
           </div>
